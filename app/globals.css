@@ -501,6 +501,17 @@ section {
   max-width: 960px;
   margin: 0 auto;
 }
+.posters-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1140px;
+  gap: 18px;
+}
+
+@media (max-width: 992px) {
+  .posters-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .poster-card-wrap {
   cursor: pointer;
 }
@@ -566,9 +577,167 @@ section {
 }
 
 @media (max-width: 640px) {
-  .posters-grid {
+  .posters-grid,
+  .posters-grid-4 {
     grid-template-columns: 1fr;
     max-width: 440px;
+  }
+}
+
+/* Sponsor Section */
+.section-sponsor {
+  padding: 80px 0;
+  position: relative;
+  background: linear-gradient(180deg, rgba(27, 7, 36, 0.4) 0%, rgba(16, 4, 22, 0.8) 100%);
+  border-top: 1px solid rgba(255, 201, 74, 0.12);
+  border-bottom: 1px solid rgba(255, 201, 74, 0.12);
+}
+.sponsor-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 36px;
+  align-items: center;
+  padding: 36px;
+  border: 1.5px solid rgba(255, 201, 74, 0.25);
+  background: radial-gradient(circle at top left, rgba(255, 201, 74, 0.08) 0%, rgba(27, 7, 36, 0.95) 70%);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 201, 74, 0.2);
+}
+.sponsor-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  background: rgba(255, 201, 74, 0.12);
+  border: 1px solid var(--gold);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.sponsor-name {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-shadow: 0 0 25px rgba(255, 201, 74, 0.35);
+  margin-bottom: 4px;
+}
+.sponsor-by {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.sponsor-tagline {
+  font-size: 0.95rem;
+  color: #ff9e42;
+  font-style: italic;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+.sponsor-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.sponsor-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.s-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 201, 74, 0.15);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+.sponsor-motto-box {
+  background: rgba(255, 19, 121, 0.1);
+  border: 1px dashed var(--pink);
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #ffb3d1;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.sponsor-actions {
+  display: flex;
+  gap: 14px;
+}
+.sponsor-flyers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.s-flyer-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 201, 74, 0.2);
+  cursor: pointer;
+  background: #000;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.s-flyer-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 36px rgba(255, 115, 0, 0.3);
+}
+.s-flyer-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.s-flyer-card:hover .s-flyer-img {
+  transform: scale(1.04);
+}
+.s-flyer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.s-flyer-card:hover .s-flyer-overlay {
+  opacity: 1;
+}
+.s-flyer-overlay span {
+  background: rgba(16, 4, 22, 0.85);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+@media (max-width: 900px) {
+  .sponsor-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+@media (max-width: 540px) {
+  .sponsor-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .sponsor-flyers-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 

@@ -3,6 +3,7 @@ import BookingForm from "@/components/BookingForm";
 import PaymentCard from "@/components/PaymentCard";
 import CountdownTimer from "@/components/CountdownTimer";
 import PosterLightbox from "@/components/PosterLightbox";
+import SponsorSection from "@/components/SponsorSection";
 import ScheduleTimeline from "@/components/ScheduleTimeline";
 import VenueCard from "@/components/VenueCard";
 import FaqSection from "@/components/FaqSection";
@@ -25,6 +26,7 @@ export default function Home() {
           </a>
           <div className="nav-links">
             <a href="#tickets">Passes</a>
+            <a href="#sponsor">Sponsor</a>
             <a href="#highlights">Highlights</a>
             <a href="#schedule">Schedule</a>
             <a href="#venue">Venue</a>
@@ -178,6 +180,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Official Title Sponsor Section - Dairy Cool (Above The Flow of the Night) */}
+      <SponsorSection />
 
       {/* Schedule / Flow of the Evening */}
       <ScheduleTimeline />

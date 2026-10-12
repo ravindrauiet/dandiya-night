@@ -11,12 +11,14 @@ export default function PosterLightbox() {
       alt: "Dandiya Night 2026 Official Event Poster at Opulent Mall",
       title: "Official Event Flyer",
       badge: "Main Announcement",
+      desc: "Saturday 17 October · Opulent Mall, Ghaziabad",
     },
     {
       src: "/poster-2.jpg",
       alt: "The Dandiya Night at Opulent Mall Event Schedule Poster",
       title: "Venue & Artists Poster",
       badge: "Pass Details",
+      desc: "Live DJ, Competitions, Food Stalls & Hampers",
     },
   ];
 
@@ -25,7 +27,7 @@ export default function PosterLightbox() {
       <div className="posters-showcase">
         <div className="posters-header">
           <span className="poster-pill">📸 OFFICIAL EVENT FLYERS</span>
-          <p className="poster-subtext">Click any flyer to view high-resolution poster</p>
+          <p className="poster-subtext">Click any flyer to view in high resolution</p>
         </div>
         <div className="posters-grid">
           {posters.map((poster, index) => (
@@ -46,7 +48,7 @@ export default function PosterLightbox() {
                   loading="lazy"
                 />
                 <div className="poster-overlay">
-                  <span className="zoom-icon">🔍 Click to Expand</span>
+                  <span className="zoom-icon">🔍 Tap to Expand</span>
                   <span className="poster-title">{poster.title}</span>
                 </div>
               </div>
@@ -67,7 +69,7 @@ export default function PosterLightbox() {
             </button>
             <div className="modal-header">
               <h3>{activePoster.title}</h3>
-              <p>{activePoster.alt}</p>
+              <p>{activePoster.desc || activePoster.alt}</p>
             </div>
             <div className="modal-body">
               <img
@@ -84,7 +86,7 @@ export default function PosterLightbox() {
                 download
                 className="btn btn-outline btn-sm"
               >
-                📥 Download Poster
+                📥 Download Flyer
               </a>
               <a href="#book" onClick={() => setActivePoster(null)} className="btn btn-primary btn-sm">
                 🎟️ Book Passes Now
