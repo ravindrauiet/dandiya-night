@@ -19,6 +19,27 @@ function makeRef() {
 // Accepts either EMAIL_USER/EMAIL_PASS or SMTP_USER/SMTP_PASS
 const senderEmail = () => (process.env.SMTP_USER || process.env.EMAIL_USER || "").trim();
 
+function getOrganiserRecipients() {
+  const recipients = new Set();
+
+  // Event manager requested by user
+  recipients.add("rahuldhaundiyal22@gmail.com");
+
+  // Additional organiser emails from environment variable if configured
+  if (process.env.ORGANISER_EMAIL) {
+    process.env.ORGANISER_EMAIL.split(/[,;]+/).forEach((addr) => {
+      const clean = addr.trim();
+      if (clean) recipients.add(clean);
+    });
+  }
+
+  // Sender email account so admin gets a copy as well
+  const sender = senderEmail();
+  if (sender) recipients.add(sender);
+
+  return Array.from(recipients).join(", ");
+}
+
 function getTransport() {
   const { SMTP_HOST, SMTP_PORT } = process.env;
   const SMTP_USER = senderEmail();
@@ -126,7 +147,7 @@ export async function POST(req) {
     }
     await transport.sendMail({
       from,
-      to: process.env.ORGANISER_EMAIL || senderEmail(),
+      to: getOrganiserRecipients(),
       replyTo: email,
       subject: `New booking ${booking.ref} – ${name} – ${ticket.name} x${qty}`,
       html: emailHtml(booking, { forOrganiser: true }),
