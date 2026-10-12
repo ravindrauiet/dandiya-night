@@ -1832,8 +1832,205 @@ section {
   color: var(--muted);
   font-size: 0.78rem;
 }
-.sticky-btn {
+/* Multi-Step Indicator */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.step-badge {
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--subtle);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.step-badge.active {
+  color: #100416;
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(255, 201, 74, 0.4);
+}
+.step-badge.done {
+  color: var(--ok);
+  border-color: var(--ok);
+  background: rgba(46, 196, 182, 0.1);
+}
+.step-badge-line {
+  flex-grow: 1;
+  max-width: 40px;
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.step-badge-line.active {
+  background: var(--gold);
+}
+
+/* Dynamic QR Box */
+.dynamic-qr-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid var(--gold);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qr-amount-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #100416;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(255, 201, 74, 0.3);
+}
+.dynamic-qr-img {
+  width: 230px;
+  height: 230px;
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.qr-loading {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.upi-details-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.upi-id-tag {
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: var(--gold);
+  background: rgba(255, 201, 74, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 201, 74, 0.3);
+}
+.step-actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* WhatsApp Share Receipt Card */
+.receipt-wa-card {
+  margin: 18px 0;
+  padding: 16px 20px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1.5px solid #25d366;
+  border-radius: 14px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.wa-card-text strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #25d366;
+  margin-bottom: 3px;
+}
+.wa-card-text p {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.wa-send-btn {
+  background: #25d366 !important;
+  color: #0b2214 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4) !important;
   flex-shrink: 0;
+}
+.wa-send-btn:hover {
+  background: #20ba5a !important;
+}
+
+/* Verification Hub / Process Card */
+.verification-info-card {
+  text-align: left;
+}
+.verification-steps-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0;
+}
+.v-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.v-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 201, 74, 0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.v-step-text strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.v-step-text p {
+  color: var(--subtle);
+  font-size: 0.82rem;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.verification-guarantee-box {
+  background: rgba(46, 196, 182, 0.08);
+  border: 1px solid var(--ok);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 14px 0;
+}
+.v-badge {
+  display: block;
+  color: var(--ok);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+.v-sub {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
 }
 
 /* Print Styles for Booking Pass */
