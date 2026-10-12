@@ -184,35 +184,45 @@ export default function BookingForm({ onTicketChange }) {
   )}&cu=INR${amountParam}&tn=${encodeURIComponent(`Dandiya Pass ${name || ""}`)}`;
 
   // ==========================================
-  // VIEW: RESULT / CONFIRMATION SCREEN
+  // VIEW: RESULT / CONFIRMATION SCREEN (PENDING VERIFICATION)
   // ==========================================
   if (result) {
-    const whatsappText = `Hi Rahul! I have completed my booking for Dandiya Night 2026.
+    const whatsappText = `Hi Rahul! I have submitted my booking request for Dandiya Night 2026.
 🎫 Booking Ref: ${result.booking.ref}
 👤 Name: ${result.booking.name}
 🎟️ Pass: ${result.booking.ticketName} (x${result.booking.qty})
-💰 Amount Paid: ${formatPrice(result.booking.total)}
+💰 Total Amount: ${formatPrice(result.booking.total)}
 📱 Mobile: ${result.booking.mobile}
 📧 Email: ${result.booking.email}
 
-Please verify my payment screenshot and pass!`;
+Please find my payment screenshot attached for quick verification & entry pass generation.`;
 
     const whatsappUrl = `https://wa.me/${EVENT.whatsapp}?text=${encodeURIComponent(whatsappText)}`;
 
     return (
       <div className="card receipt-card print-ticket-area">
-        <div className="receipt-confetti-badge">🎉 PASS RESERVED SUCCESSFULLY!</div>
+        <div className="receipt-confetti-badge" style={{ color: "var(--gold)" }}>
+          ⏳ BOOKING REQUEST SUBMITTED
+        </div>
 
         <div className="receipt-header">
-          <span className="tag-vip">OFFICIAL ENTRY PASS</span>
+          <span className="tag-vip" style={{ background: "rgba(255, 201, 74, 0.2)", color: "var(--gold)", border: "1px solid var(--gold)" }}>
+            PENDING ORGANISER VERIFICATION
+          </span>
           <h3 className="receipt-title">{EVENT.name}</h3>
           <p className="receipt-sub">{EVENT.date} · {EVENT.time}</p>
           <p className="receipt-venue">{EVENT.venue}</p>
         </div>
 
-        <div className="receipt-qr-box">
-          <img src={result.qr} alt="Booking QR code" className="receipt-qr-img" />
-          <span className="receipt-qr-lbl">Show this Digital QR at Entry Gate</span>
+        {/* Security / Verification Status Box */}
+        <div className="alert alert-ok" style={{ textAlign: "left", marginTop: 18, background: "rgba(255, 201, 74, 0.1)", borderColor: "var(--gold)" }}>
+          <strong style={{ color: "var(--gold)" }}>🛡️ Verification in Progress:</strong>
+          <p style={{ margin: "6px 0 0", fontSize: "0.88rem", color: "var(--text)" }}>
+            Your payment screenshot has been sent to our event managers. To prevent invalid bookings, our team verifies all UPI transactions against bank records.
+          </p>
+          <p style={{ margin: "6px 0 0", fontSize: "0.88rem", color: "var(--muted)" }}>
+            Once approved, your official <strong>Gate Entry Ticket &amp; QR Code</strong> will be sent to <strong>{result.booking.email}</strong>.
+          </p>
         </div>
 
         <dl className="receipt-details">
@@ -233,22 +243,16 @@ Please verify my payment screenshot and pass!`;
 
           <dt>Mobile Number:</dt>
           <dd>{result.booking.mobile}</dd>
+
+          <dt>Verification Status:</dt>
+          <dd style={{ color: "var(--gold)" }}>Under Review by Admin</dd>
         </dl>
 
-        {/* Multi-channel verification highlight */}
-        <div className="alert alert-ok" style={{ textAlign: "left" }}>
-          <strong>✅ Multi-channel Confirmation:</strong>
-          <ul style={{ margin: "6px 0 0 18px", fontSize: "0.88rem" }}>
-            <li>Email with your official QR pass sent to <strong>{result.booking.email}</strong>.</li>
-            <li>Organiser <strong>Rahul Dhaundiyal</strong> has been notified of your booking request.</li>
-          </ul>
-        </div>
-
-        {/* WhatsApp Direct Connect Action */}
+        {/* WhatsApp Direct Connect Action for Fast Verification */}
         <div className="receipt-wa-card no-print">
           <div className="wa-card-text">
-            <strong>📲 Verify &amp; Connect on WhatsApp</strong>
-            <p>Send your booking reference and pass directly to the organiser for instant confirmation.</p>
+            <strong>📲 Want Instant Approval?</strong>
+            <p>Send your reference number and payment screenshot directly to Rahul Dhaundiyal on WhatsApp for priority approval:</p>
           </div>
           <a
             href={whatsappUrl}
@@ -256,14 +260,11 @@ Please verify my payment screenshot and pass!`;
             rel="noopener noreferrer"
             className="btn btn-primary btn-sm wa-send-btn"
           >
-            💬 Open WhatsApp to Send Pass ➔
+            💬 Fast-Track via WhatsApp ➔
           </a>
         </div>
 
         <div className="receipt-actions no-print">
-          <button type="button" className="btn btn-primary btn-sm" onClick={printTicket}>
-            🖨️ Print / Save Entry Pass
-          </button>
           <button
             type="button"
             className="btn btn-outline btn-sm"
@@ -277,7 +278,7 @@ Please verify my payment screenshot and pass!`;
               setStep(1);
             }}
           >
-            + Book Another Pass
+            + Submit Another Booking
           </button>
         </div>
       </div>
